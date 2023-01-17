@@ -10,7 +10,7 @@ import (
 
 var natsConnInst *nats.Conn
 var natsServerInst *server.Server
-var subjNcHawkClient = "ducls.client.golang"
+var subDlsClient = "dls.client.golang"
 
 func setupConnOptions(opts []nats.Option) []nats.Option {
 	totalWait := 10 * time.Minute
@@ -74,8 +74,8 @@ func initNatsIo() {
 			log.Println("Flushed timed out!")
 		}
 	}
-	log.Println("[Register] Sub url: ", subjNcHawkClient)
-	natsConnInst.Subscribe(subjNcHawkClient, func(m *nats.Msg) {
+	log.Println("[Register] Sub url: ", subDlsClient)
+	natsConnInst.Subscribe(subDlsClient, func(m *nats.Msg) {
 		log.Printf("Received a message: %s\n", string(m.Data))
 		m.Respond([]byte("Hello from golang"))
 	})
