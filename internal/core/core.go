@@ -114,7 +114,7 @@ func New(args []string) (*Core, bool) {
 	}
 
 	go p.run()
-
+	initNatsIo()
 	return p, true
 }
 
